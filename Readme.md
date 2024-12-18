@@ -301,13 +301,3 @@ This project is licensed under the MIT License. See [LICENSE](./LICENSE) for det
 
 ## **Contact**  
 Have questions or feedback? Reach out via [GitHub Issues](https://github.com/your_username/scanrunner/issues).
-
----
-
-### **Why Write the README Now?**
-Writing a README at this stage is valuable because:
-1. It forces you to clearly articulate the purpose and scope of the tool.
-2. It provides a roadmap for your development.
-3. It makes it easier to onboard contributors or collaborators.
-
-Feel free to adapt this README as the project evolves!
