@@ -11,7 +11,7 @@ import (
 )
 
 var (
-	configFile string    // Variable to hold the path to the config file
+	configFile string     // Variable to hold the path to the config file
 	config     pkg.Config // Variable to store the loaded configuration
 	rules      pkg.Rules  // Variable to store the loaded rules
 )
@@ -54,6 +54,6 @@ func Execute() {
 func init() {
 	// Add a persistent flag for specifying the configuration file
 	rootCmd.PersistentFlags().StringVarP(&configFile, "config", "c", "./config/default-config.yaml",
-    	"Path to the configuration file (default is ./config/default-config.yaml)")
+		"Path to the configuration file (default is ./config/default-config.yaml)")
 
 }
