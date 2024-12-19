@@ -170,13 +170,20 @@ scanrunner/
 │   ├── scan.go               # Scan command implementation
 │   ├── validate.go           # Validate command implementation
 │   ├── report.go             # Report command implementation
+│   ├── scan_secrets.go       # Secret scanning command (Phase 5)
+│   ├── scan_dependencies.go  # Dependency scanning command (Phase 6)
+│   ├── scan_iac.go           # IaC scanning command (Phase 6)
+│   ├── scan_images.go        # Image scanning command (Phase 6)
+│   ├── scan_code.go          # Static code analysis command (Post-MVP)
+│   ├── validate_policy.go    # Kubernetes policy validation command (Post-MVP)
+│   ├── scan_audit.go         # Audit log scanning command (Post-MVP)
 │   ├── version.go            # Version command implementation
 ├── internal/
 │   ├── cli/                  # CLI utilities for argument parsing and validation
 │   │   ├── parser.go         # CLI argument and flag parser
 │   │   ├── validator.go      # Input validation logic
 │   ├── compliance/           # Compliance logic and rule engine
-│   │   ├── rules.go          # Mock compliance rules logic
+│   │   ├── rules.go          # Compliance rules logic and handling
 │   │   ├── evaluator.go      # Compliance evaluation engine
 │   │   ├── report.go         # Report generation logic for compliance checks
 │   ├── fileparser/           # File handling logic
@@ -193,15 +200,26 @@ scanrunner/
 │   │   ├── ai_model.onnx     # Pre-trained lightweight ONNX model
 │   │   ├── model_loader.go   # ONNX model loading and initialization
 │   │   ├── suggestion.go     # AI-based suggestion generation based on results
+│   ├── security/             # Security scanning integrations
+│   │   ├── trivy.go          # Trivy integration for secret and dependency scanning
+│   │   ├── checkov.go        # Checkov integration for IaC scanning (Post-MVP)
+│   ├── kubernetes/           # Kubernetes runtime compliance (Post-MVP)
+│   │   ├── operator.go       # Operator implementation using Kubebuilder
+│   │   ├── policy_validator.go # Policy validation logic
+│   │   ├── audit_log.go      # Kubernetes audit log processing
+│   │   ├── pod_security.go   # Pod security compliance checks
 ├── pkg/                      # Shared utilities and reusable components
 │   ├── logger.go             # Logging utilities for consistent output
 │   ├── config_loader.go      # Configuration loading and management
 │   ├── error_handler.go      # Centralized error handling utilities
+│   ├── rules_loader.go       # Centralized rules handling utilities
+│   ├── validate_field.go     # Field validation utility
+│   ├── yaml_converter.go     # YAML conversion and validation utilities
 │   ├── report_formatter.go   # Formatting logic for reports (e.g., JSON/Markdown)
 │   ├── stats_generator.go    # Summary statistics generator for results
 ├── config/                   # Configuration files
-│   ├── example.yaml          # Example configuration for users
-│   ├── default.yaml          # Default configuration settings
+│   ├── custom-rules.yaml     # Default rules file for compliance checks
+│   ├── default-config.yaml   # Default configuration shipped with the tool
 ├── assets/                   # Static assets and templates
 │   ├── templates/
 │   │   ├── report_template.txt  # Report template for terminal output
@@ -216,6 +234,7 @@ scanrunner/
 │   ├── fileparser_test.go    # Tests for file parsing and validation
 │   ├── concurrency_test.go   # Tests for concurrency and parallel processing
 │   ├── ai_test.go            # Tests for AI model inference and suggestions
+│   ├── security_test.go      # Tests for security scanning integrations
 │   ├── integration/          # Integration tests for workflow validation
 ├── CONTRIBUTING.md           # Contribution guidelines for open-source contributors
 ├── LICENSE                   # Licensing terms for the project
@@ -223,6 +242,7 @@ scanrunner/
 ├── Makefile                  # Build and automation commands for the project
 ├── main.go                   # Entry point for the CLI tool
 └── README.md                 # Project overview and basic usage instructions
+
 ```
 
 ---

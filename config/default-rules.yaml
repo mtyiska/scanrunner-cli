@@ -1,0 +1,29 @@
+required_fields:
+  # General fields
+  - apiVersion                 # Ensures the API version is specified
+  - kind                       # Ensures the resource type is defined (e.g., Pod, Deployment)
+  - metadata                   # Ensures metadata is included
+  - metadata.name              # Ensures the resource has a unique name
+  - spec                       # Ensures specifications are defined
+
+  # Metadata fields
+  - metadata.labels            # Labels for organizational and operational purposes
+  - metadata.annotations       # Annotations for extended metadata
+
+  # Pod or workload fields
+  - spec.template.spec.containers[]         # Ensures containers are defined
+  - spec.template.spec.containers[].name     # Ensures each container has a name
+  - spec.template.spec.containers[].image    # Ensures a container image is defined
+  - spec.template.spec.containers[].resources.limits      # Resource limits for CPU and memory
+  - spec.template.spec.containers[].resources.requests    # Resource requests for CPU and memory
+
+  # Security fields
+  - spec.template.spec.securityContext       # Defines pod-level security settings
+  - spec.template.spec.containers[].securityContext # Defines container-level security settings
+  - spec.template.spec.serviceAccountName    # Ensures a ServiceAccount is specified for RBAC
+
+  # Deployment-specific fields (for Deployments, StatefulSets, etc.)
+  - spec.replicas              # Ensures the number of replicas is specified
+  - spec.selector              # Ensures a selector matches pods
+  - spec.template.metadata     # Ensures pod metadata is included in the template
+  - spec.template.spec         # Ensures pod specifications are included in the template
