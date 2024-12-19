@@ -199,9 +199,10 @@ scanrunner/
 │   ├── error_handler.go      # Centralized error handling utilities
 │   ├── report_formatter.go   # Formatting logic for reports (e.g., JSON/Markdown)
 │   ├── stats_generator.go    # Summary statistics generator for results
+|   ├── rules_loader.go       # Rules loader
 ├── config/                   # Configuration files
-│   ├── example.yaml          # Example configuration for users
-│   ├── default.yaml          # Default configuration settings
+│   ├── custom-rules.yaml     # Default rules file for compliance checks
+│   ├── default-config.yaml   # Default configuration shipped with the tool
 ├── assets/                   # Static assets and templates
 │   ├── templates/
 │   │   ├── report_template.txt  # Report template for terminal output
