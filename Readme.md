@@ -101,58 +101,68 @@ graph TD
    ```bash
    export PATH=$PATH:/path/to/scanrunner
    ```
-
-### **Basic Commands**  
-- Scan files in a directory:
-   ```bash
-   scanrunner scan --path ./config-files
-   ```
-
-- Validate compliance:
-   ```bash
-   scanrunner validate --rules ./compliance-rules.yaml
-   ```
-
-- Generate a report:
-   ```bash
-   scanrunner report --output report.json
-   ```
-
-- Help and usage:
-   ```bash
-   scanrunner --help
-   ```
-
 ---
+### **Basic Commands**  
 
-## **Usage**  
+1. **Build the CLI Tool**  
+   - Compile the tool before running commands:  
+     ```bash
+     go build -o scanrunner main.go
+     ```
 
-### **Workflow**  
+2. **Root Command**  
+   - Display help for the root command:  
+     ```bash
+     ./scanrunner --help
+     ```
 
-1. **File Scanning**:  
-   Scan directories for YAML/JSON files and validate them for syntax issues:
-   ```bash
-   scanrunner scan --path ./example-files
-   ```
+3. **Scan Command**  
+   - Run the `scan` command with default settings:  
+     ```bash
+     ./scanrunner scan
+     ```  
+   - Specify a custom directory to scan:  
+     ```bash
+     ./scanrunner scan --config=/path/to/config.yaml
+     ```
 
-2. **Compliance Checking**:  
-   Apply compliance rules to validate files:
-   ```bash
-   scanrunner validate --rules ./rules.yaml
-   ```
+4. **Validate Command**  
+   - Run the `validate` command with default compliance rules:  
+     ```bash
+     ./scanrunner validate
+     ```  
+   - Specify a custom rules file:  
+     ```bash
+     ./scanrunner validate --rules=/path/to/custom-rules.yaml
+     ```  
+   - Specify a custom configuration file:  
+     ```bash
+     ./scanrunner validate --config=/path/to/config.yaml
+     ```  
+   - Enable strict mode:  
+     ```bash
+     ./scanrunner validate --strict
+     ```
 
-3. **AI-Powered Insights**:  
-   Generate AI-based suggestions for issues:
-   ```bash
-   scanrunner ai --model ./ai_model.onnx
-   ```
+5. **Report Command**  
+   - Generate a report in the default format (JSON):  
+     ```bash
+     ./scanrunner report
+     ```  
+   - Specify a custom output format (e.g., Markdown):  
+     ```bash
+     ./scanrunner report --format=markdown
+     ```  
+   - Save the report to a specific path:  
+     ```bash
+     ./scanrunner report --output=/path/to/report.md
+     ```
 
-4. **Reporting**:  
-   Aggregate and format results:
-   ```bash
-   scanrunner report --format markdown --output summary.md
-   ```
-
+6. **Version Command**  
+   - Display the version of the CLI tool:  
+     ```bash
+     ./scanrunner version
+     ```  
 ---
 
 ## **Folder Structure**  
