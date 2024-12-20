@@ -91,16 +91,16 @@ graph TD
    git clone https://github.com/your_username/scanrunner.git
    cd scanrunner
    ```
+2. Run Setup script:
+   ```bash
+   bash setup.sh
+   ```
 
-2. Build the tool:
+3. Build the tool:
    ```bash
    go build -o scanrunner main.go
    ```
 
-3. Add `scanrunner` to your `$PATH` (optional):
-   ```bash
-   export PATH=$PATH:/path/to/scanrunner
-   ```
 ---
 ### **Basic Commands**  
 
