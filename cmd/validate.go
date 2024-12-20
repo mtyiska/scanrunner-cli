@@ -5,7 +5,9 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/mtyiska/scanrunner/internal/compliance"
 	"github.com/mtyiska/scanrunner/pkg"
+
 	"github.com/spf13/cobra"
 )
 
@@ -15,11 +17,11 @@ var rulesPath string
 // validateCmd represents the "validate" subcommand
 var validateCmd = &cobra.Command{
 	Use:   "validate",
-	Short: "Validate YAML files against compliance rules",
-	Long: `The validate command checks YAML files for structural correctness
-	and compliance with predefined rules (e.g., field presence, naming conventions, etc.).`,
+	Short: "Validate YAML, JSON files, and Dockerfiles against compliance rules",
+	Long: `The validate command checks YAML, JSON files, and Dockerfiles for structural correctness
+	and compliance with predefined rules (e.g., field presence, best practices, etc.).`,
 	Run: func(cmd *cobra.Command, args []string) {
-		log.Printf("Validating files in directory: %s\n", config.ScanPath)
+		// log.Printf("Validating files in directory: %s\n", config.ScanPath)
 
 		// Load compliance rules
 		if rulesPath == "" {
@@ -37,15 +39,15 @@ var validateCmd = &cobra.Command{
 			log.Fatalf("Error scanning directory: %v\n", err)
 		}
 		if len(files) == 0 {
-			log.Println("No YAML files found for validation.")
+			log.Println("No YAML, JSON files, or Dockerfiles found for validation.")
 			return
 		}
 
 		// Validate each file against the rules
 		var validationErrors []string
 		for _, file := range files {
-			log.Printf("Validating file: %s\n", file)
-			err := pkg.ValidateFile(file, rules)
+			// log.Printf("Validating file: %s\n", file)
+			err := compliance.ValidateFile(file, rules)
 			if err != nil {
 				// log.Printf("Validation failed for %s: %v\n", file, err)
 				validationErrors = append(validationErrors, fmt.Sprintf("%s: FAIL (%v)", file, err))
@@ -53,7 +55,7 @@ var validateCmd = &cobra.Command{
 					log.Fatal("Strict mode enabled. Stopping on first error.")
 				}
 			} else {
-				log.Printf("Validation passed for %s\n", file)
+				// log.Printf("Validation passed for %s\n", file)
 				validationErrors = append(validationErrors, fmt.Sprintf("%s: PASS", file))
 			}
 		}

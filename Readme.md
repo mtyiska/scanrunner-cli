@@ -182,6 +182,8 @@ scanrunner/
 │   ├── cli/                  # CLI utilities for argument parsing and validation
 │   │   ├── parser.go         # CLI argument and flag parser
 │   │   ├── validator.go      # Input validation logic
+│   ├── model/                # CLI utilities for argument parsing and validation
+│   │   ├── rules.go          # Validation Rules Model
 │   ├── compliance/           # Compliance logic and rule engine
 │   │   ├── rules.go          # Compliance rules logic and handling
 │   │   ├── evaluator.go      # Compliance evaluation engine
@@ -213,8 +215,6 @@ scanrunner/
 │   ├── config_loader.go      # Configuration loading and management
 │   ├── error_handler.go      # Centralized error handling utilities
 │   ├── rules_loader.go       # Centralized rules handling utilities
-│   ├── validate_field.go     # Field validation utility
-│   ├── yaml_converter.go     # YAML conversion and validation utilities
 │   ├── report_formatter.go   # Formatting logic for reports (e.g., JSON/Markdown)
 │   ├── stats_generator.go    # Summary statistics generator for results
 ├── config/                   # Configuration files
