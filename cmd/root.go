@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/mtyiska/scanrunner/internal/model"
 	"github.com/mtyiska/scanrunner/pkg"
 	"github.com/spf13/cobra"
 )
@@ -13,14 +14,14 @@ import (
 var (
 	configFile string     // Variable to hold the path to the config file
 	config     pkg.Config // Variable to store the loaded configuration
-	rules      pkg.Rules  // Variable to store the loaded rules
+	rules      model.Rules  // Variable to store the loaded rules
 )
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "scanrunner",
-	Short: "SCANRUNNER-CLI: A modular tool for file validation and AI-powered insights",
-	Long: `SCANRUNNER-CLI is a flexible command-line tool for scanning, validating,
+	Short: "ScanRunner-CLI: A modular tool for file validation and AI-powered insights",
+	Long: `ScanRunner-CLI is a flexible command-line tool for scanning, validating,
 and reporting on YAML/JSON files while leveraging AI for actionable suggestions.`,
 	PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
 		// Load the configuration file

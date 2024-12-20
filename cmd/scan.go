@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/spf13/cobra"
 )
@@ -25,7 +26,7 @@ var scanCmd = &cobra.Command{
 
 		// Output the discovered files
 		if len(files) == 0 {
-			fmt.Println("No YAML/JSON files found.")
+			fmt.Println("No YAML, JSON files, or Dockerfiles found.")
 		} else {
 			fmt.Println("Discovered files:")
 			for _, file := range files {
@@ -39,7 +40,7 @@ func init() {
 	rootCmd.AddCommand(scanCmd)
 }
 
-// scanDirectory scans the directory for YAML and JSON files
+// scanDirectory scans the directory for YAML, JSON files, and Dockerfiles
 func scanDirectory(path string) ([]string, error) {
 	var files []string
 
@@ -47,9 +48,19 @@ func scanDirectory(path string) ([]string, error) {
 		if err != nil {
 			return err
 		}
-		if !info.IsDir() && (filepath.Ext(filePath) == ".yaml" || filepath.Ext(filePath) == ".yml") {
+
+		// Skip directories
+		if info.IsDir() {
+			return nil
+		}
+
+		// Check for YAML, JSON, or files with "Docker" in their name
+		ext := strings.ToLower(filepath.Ext(filePath))
+		baseName := strings.ToLower(filepath.Base(filePath))
+		if ext == ".yaml" || ext == ".yml" || ext == ".json" || strings.Contains(baseName, "docker") {
 			files = append(files, filePath)
 		}
+
 		return nil
 	})
 

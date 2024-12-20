@@ -1,5 +1,5 @@
 output_format: "markdown"              # Format for the report (markdown or json)
-scan_path: "/Users/michaeltyiska/Desktop/test-cli/test-files"   # Absolute path to the folder with files to scan
+scan_path: "/Users/michaeltyiska/Desktop/test-cli/default/test-files"   # Absolute path to the folder with files to scan
 rules_path: "./config/default-rules.yaml"   # Absolute path to the rules file
-report_output: "/Users/michaeltyiska/Desktop/test-cli/test-files/report.md" # Absolute path where the report will be saved
+report_output: "/Users/michaeltyiska/Desktop/test-cli/default/test-files/report.md" # Absolute path where the report will be saved
 strict_mode: false                     # Enable or disable strict validation mode

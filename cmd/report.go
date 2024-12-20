@@ -7,7 +7,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/mtyiska/scanrunner/pkg" // Importing the package for YAML parsing and validation
+	"github.com/mtyiska/scanrunner/internal/compliance"
+	"github.com/mtyiska/scanrunner/pkg"
 	"github.com/spf13/cobra"
 )
 
@@ -40,10 +41,10 @@ var reportCmd = &cobra.Command{
 		// Validate each file and store results
 		var results []map[string]interface{}
 		for _, file := range files {
-			log.Printf("Validating file: %s\n", file)
-			err := pkg.ValidateFile(file, rules)
+			// log.Printf("Validating file: %s\n", file)
+			err := compliance.ValidateFile(file, rules)
 			if err != nil {
-				log.Printf("Validation failed for file %s: %v\n", file, err)
+				// log.Printf("Validation failed for file %s: %v\n", file, err)
 				results = append(results, map[string]interface{}{
 					"file":   filepath.Base(file),
 					"status": "FAIL",
